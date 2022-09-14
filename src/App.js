@@ -3,12 +3,12 @@ import './App.css';
 import SingleCard from './components/SingleCard';
 
 const cartImages = [
-  { src: '/img/helmet-1.png' },
-  { src: '/img/potion-1.png' },
-  { src: '/img/ring-1.png' },
-  { src: '/img/scroll-1.png' },
-  { src: '/img/shield-1.png' },
-  { src: '/img/sword-1.png' },
+  { src: '/img/helmet-1.png', matches: false },
+  { src: '/img/potion-1.png', matches: false },
+  { src: '/img/ring-1.png', matches: false },
+  { src: '/img/scroll-1.png', matches: false },
+  { src: '/img/shield-1.png', matches: false },
+  { src: '/img/sword-1.png', matches: false },
 ];
 
 function App() {
@@ -39,8 +39,17 @@ function App() {
   useEffect(() => {
     if (choice1 && choice2) {
       if (choice1.src === choice2.src) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choice1.src) {
+              return { ...card, matches: true };
+            } else {
+              return card;
+            }
+          });
+        });
+
         reset();
-        console.log('takie same elementy');
       } else {
         reset();
         console.log('nie te same');
@@ -48,6 +57,7 @@ function App() {
     }
   }, [choice1, choice2]);
 
+  console.log(cards);
   return (
     <div className='App'>
       <h1>Magic Match</h1>
