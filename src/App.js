@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import SingleCard from './components/SingleCard';
 
@@ -14,6 +14,8 @@ const cartImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choice1, setChoice1] = useState(null);
+  const [choice2, setChoice2] = useState(null);
 
   const shuffleCarts = () => {
     const shuffledImages = [...cartImages, ...cartImages]
@@ -23,14 +25,36 @@ function App() {
     setCards(shuffledImages);
     setTurns(0);
   };
-  console.log(turns, cards);
+
+  const handleChoice = (card) => {
+    choice1 ? setChoice2(card) : setChoice1(card);
+  };
+
+  const reset = () => {
+    setChoice1(null);
+    setChoice2(null);
+    setTurns((prevTurn) => prevTurn + 1);
+  };
+
+  useEffect(() => {
+    if (choice1 && choice2) {
+      if (choice1.src === choice2.src) {
+        reset();
+        console.log('takie same elementy');
+      } else {
+        reset();
+        console.log('nie te same');
+      }
+    }
+  }, [choice1, choice2]);
+
   return (
     <div className='App'>
       <h1>Magic Match</h1>
       <button onClick={shuffleCarts}>New Game</button>
       <div className='grid-card'>
         {cards.map((card) => (
-          <SingleCard id={card.id} card={card} />
+          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
         ))}
       </div>
     </div>
