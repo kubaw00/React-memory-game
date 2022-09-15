@@ -1,3 +1,38 @@
+# Snake Game
+
+## [Link to App](https://kubaw00.github.io/Snake-Game/)
+
+> Campgrounds Website
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+Simple Snake Game with JavaScript and Canvas
+
+![screenshot](https://github.com/kubaw00/Snake-Game/blob/main/screenshots/snake.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
