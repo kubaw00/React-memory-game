@@ -1,3 +1,37 @@
+# Memory Game
+
+## [Link to App](https://kubaw00.github.io/Snake-Game/)
+
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+Memory Game in ReactJS
+
+![screenshot](https://github.com/kubaw00/React-memory-game/blob/main/screenshots/memory-game.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
