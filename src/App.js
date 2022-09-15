@@ -16,6 +16,7 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
+  const [disable, setDisable] = useState(false);
 
   const shuffleCarts = () => {
     const shuffledImages = [...cartImages, ...cartImages]
@@ -34,10 +35,12 @@ function App() {
     setChoice1(null);
     setChoice2(null);
     setTurns((prevTurn) => prevTurn + 1);
+    setDisable(false);
   };
 
   useEffect(() => {
     if (choice1 && choice2) {
+      setDisable(true);
       if (choice1.src === choice2.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -48,11 +51,13 @@ function App() {
             }
           });
         });
-        reset();
-      } else {
         setTimeout(() => {
           reset();
         }, 600);
+      } else {
+        setTimeout(() => {
+          reset();
+        }, 1000);
       }
     }
   }, [choice1, choice2]);
@@ -64,6 +69,7 @@ function App() {
       <div className='grid-card'>
         {cards.map((card) => (
           <SingleCard
+            disable={disable}
             flipped={card === choice1 || card === choice2 || card.matches}
             key={card.id}
             card={card}
