@@ -23,6 +23,7 @@
 .card .back {
   transform: rotateY(0);
   transition: 0.2s ease-in;
+  cursor: pointer;
 }
 
 .flipped .back {

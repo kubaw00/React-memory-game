@@ -18,26 +18,6 @@ function App() {
   const [choice2, setChoice2] = useState(null);
   const [disable, setDisable] = useState(false);
 
-  const shuffleCarts = () => {
-    const shuffledImages = [...cartImages, ...cartImages]
-      .sort(() => Math.random() - 0.5)
-      .map((cart) => ({ ...cart, id: Math.random() }));
-
-    setCards(shuffledImages);
-    setTurns(0);
-  };
-
-  const handleChoice = (card) => {
-    choice1 ? setChoice2(card) : setChoice1(card);
-  };
-
-  const reset = () => {
-    setChoice1(null);
-    setChoice2(null);
-    setTurns((prevTurn) => prevTurn + 1);
-    setDisable(false);
-  };
-
   useEffect(() => {
     if (choice1 && choice2) {
       setDisable(true);
@@ -62,10 +42,36 @@ function App() {
     }
   }, [choice1, choice2]);
 
+  const shuffleCards = () => {
+    const shuffledImages = [...cartImages, ...cartImages]
+      .sort(() => Math.random() - 0.5)
+      .map((cart) => ({ ...cart, id: Math.random() }));
+
+    setChoice1(null);
+    setChoice2(null);
+    setCards(shuffledImages);
+    setTurns(0);
+  };
+
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
+  const handleChoice = (card) => {
+    choice1 ? setChoice2(card) : setChoice1(card);
+  };
+
+  const reset = () => {
+    setChoice1(null);
+    setChoice2(null);
+    setTurns((prevTurn) => prevTurn + 1);
+    setDisable(false);
+  };
+
   return (
     <div className='App'>
       <h1>Magic Match</h1>
-      <button onClick={shuffleCarts}>New Game</button>
+      <button onClick={shuffleCards}>New Game</button>
       <div className='grid-card'>
         {cards.map((card) => (
           <SingleCard
@@ -77,6 +83,7 @@ function App() {
           />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   );
 }
