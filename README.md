@@ -9,7 +9,7 @@
 
 Memory Game in ReactJS
 
-![screenshot](https://github.com/kubaw00/Snake-Game/blob/main/screenshots/memory game.png)
+![screenshot](https://github.com/kubaw00/Snake-Game/blob/main/screenshots/memory-game.png)
 
 
 
